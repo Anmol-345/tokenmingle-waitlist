@@ -7,10 +7,9 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const username = url.searchParams.get('username') || '@tokenmingle';
     
-    // Safely get the absolute origin (e.g. https://tokenmingle-waitlist.vercel.app)
-    const origin = url.origin;
-    const cardUrl = `${origin}/card.png`;
-    const heroUrl = `${origin}/hero.png`;
+    // Fetch directly from GitHub to bypass Vercel Edge loopback blocking which causes timeouts
+    const cardUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/card.png';
+    const heroUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/hero.png';
 
     return new ImageResponse(
       (
