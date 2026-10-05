@@ -4,16 +4,13 @@ export const runtime = 'edge';
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const username = searchParams.get('username') || '@tokenmingle';
+    const url = new URL(request.url);
+    const username = url.searchParams.get('username') || '@tokenmingle';
     
-    // In production on Vercel, VERCEL_URL is populated automatically.
-    // We fall back to localhost for local testing.
-    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-    const host = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_SITE_URL || 'localhost:3000';
-    const baseUrl = `${protocol}://${host}`;
-    
-    const cardUrl = `${baseUrl}/card.png`;
+    // Safely get the absolute origin (e.g. https://tokenmingle-waitlist.vercel.app)
+    const origin = url.origin;
+    const cardUrl = `${origin}/card.png`;
+    const heroUrl = `${origin}/hero.png`;
 
     return new ImageResponse(
       (
@@ -25,13 +22,28 @@ export async function GET(request: Request) {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#050505',
+            position: 'relative',
           }}
         >
+          {/* Hero background (Satori doesn't support background-image) */}
+          <img 
+            src={heroUrl} 
+            alt="Hero Background" 
+            style={{ 
+              position: 'absolute', 
+              top: 0, 
+              left: 0, 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover' 
+            }} 
+          />
+
           {/* Card container */}
           <div style={{ display: 'flex', position: 'relative' }}>
             <img src={cardUrl} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
             
-            {/* The Custom Overlay scaled slightly to fit the 630px height of OG Canvas */}
+            {/* The Custom Overlay */}
             <div
               style={{
                 position: 'absolute',
