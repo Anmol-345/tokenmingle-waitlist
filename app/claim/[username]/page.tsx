@@ -10,7 +10,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const sp = await searchParams;
   const timestamp = sp?.t || Date.now().toString();
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tokenmingle-waitlist.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.waitlist.tokenmingle.fun';
 
   // &ext=.png tricks Twitter into treating this as a real image file URL
   // Encode username so @ becomes %40 and doesn't confuse X's image fetcher

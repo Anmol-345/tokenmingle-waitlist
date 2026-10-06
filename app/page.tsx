@@ -14,7 +14,7 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   const handleShare = () => {
-    const baseUrl = "https://tokenmingle-waitlist.vercel.app";
+    const baseUrl = "https://www.waitlist.tokenmingle.fun";
     const username = (session?.user as any)?.username || mockUser.name;
     // Trick: Point tweet URL to /claim/[username] with timestamp cache buster
     // so Twitterbot always scrapes fresh OG metadata

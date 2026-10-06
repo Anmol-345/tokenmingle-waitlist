@@ -22,19 +22,19 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://www.waitlist.tokenmingle.fun')
   ),
   title: "Waitlist for TokenMingle",
   description: "The future of token-powered communities is here.",
   openGraph: {
     title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
-    url: "https://tokenmingle-waitlist.vercel.app",
+    url: "https://www.waitlist.tokenmingle.fun",
     siteName: "TokenMingle",
     type: "website",
     images: [
       {
-        url: "https://tokenmingle-waitlist.vercel.app/ogpreview.png",
+        url: "https://www.waitlist.tokenmingle.fun/ogpreview.png",
         width: 1200,
         height: 630,
         alt: "Waitlist for TokenMingle Card",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
-    images: ["https://tokenmingle-waitlist.vercel.app/ogpreview.png"],
+    images: ["https://www.waitlist.tokenmingle.fun/ogpreview.png"],
   },
 };
 
