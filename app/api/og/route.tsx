@@ -11,6 +11,10 @@ export async function GET(request: Request) {
     const cardUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/card.png';
     const heroUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/hero.png';
 
+    // Fetch as array buffers for Satori
+    const cardBuffer = await fetch(cardUrl).then((res) => res.arrayBuffer());
+    const heroBuffer = await fetch(heroUrl).then((res) => res.arrayBuffer());
+
     return new ImageResponse(
       (
         <div
@@ -26,7 +30,7 @@ export async function GET(request: Request) {
         >
           {/* Hero background (Satori doesn't support background-image) */}
           <img 
-            src={heroUrl} 
+            src={heroBuffer as any} 
             alt="Hero Background" 
             style={{ 
               position: 'absolute', 
@@ -40,7 +44,7 @@ export async function GET(request: Request) {
 
           {/* Card container */}
           <div style={{ display: 'flex', position: 'relative' }}>
-            <img src={cardUrl} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
+            <img src={cardBuffer as any} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
             
             {/* The Custom Overlay */}
             <div
