@@ -77,11 +77,11 @@ export async function GET(request: Request) {
             <div
               style={{
                 position: 'absolute',
-                top: '252px',
+                top: '250px',
                 left: '115.5px',
                 display: 'flex',
                 justifyContent: 'flex-start',
-                fontSize: 64,
+                fontSize: 34,
                 fontWeight: 800,
                 color: '#000000',
                 fontFamily: '"Montserrat"',
