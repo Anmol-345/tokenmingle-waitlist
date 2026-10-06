@@ -7,13 +7,21 @@ import { useState } from "react";
 const mockUser = {
   name: "@tokenmingle",
   avatar: null as string | null,
-  shareText: "Just joined the @TokenMingle waitlist! The future of token-powered communities is here. Get early access now! tokenmingle.xyz",
+  shareText: "Just joined the @TokenMingle waitlist! The future of token-powered communities is here.",
 };
 
 export default function Home() {
   const [linked, setLinked] = useState(false);
-  const encodedText = encodeURIComponent(mockUser.shareText);
-  const xIntentUrl = `https://x.com/intent/post?text=${encodedText}`;
+
+  const handleShare = () => {
+    const baseUrl = "https://tokenmingle-waitlist.vercel.app";
+    const username = mockUser.name;
+    // Trick: Point tweet URL to /claim/[username] with timestamp cache buster
+    // so Twitterbot always scrapes fresh OG metadata
+    const claimUrl = encodeURIComponent(`${baseUrl}/claim/${encodeURIComponent(username)}?t=${Date.now()}`);
+    const tweetText = encodeURIComponent(mockUser.shareText);
+    window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${claimUrl}`, "_blank");
+  };
 
   return (
     <div
@@ -62,17 +70,15 @@ export default function Home() {
               Link X
             </button>
           ) : (
-            <Link
-              href={xIntentUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={handleShare}
               className="group flex items-center gap-3 rounded-full bg-black/70 backdrop-blur-md px-8 py-4 text-white font-semibold transition-all duration-300 hover:bg-black hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.24)] border border-white/20"
             >
               <svg className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
               Share on X
-            </Link>
+            </button>
           )}
 
           <Link
