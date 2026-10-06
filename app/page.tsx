@@ -28,6 +28,7 @@ export default function Home() {
       className="relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url(/hero.png)" }}
     >
+      <div className="absolute inset-0 backdrop-blur-md bg-black/20"></div>
       
       <div className="relative z-10 flex flex-col items-center justify-center mb-16 gap-1">
         <div className="relative inline-block drop-shadow-xl hover:drop-shadow-[0_15px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
@@ -76,15 +77,17 @@ export default function Home() {
             </button>
           )}
 
-          <Link
-            href="#"
+          <a
+            href="https://www.tokenmingle.fun"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md px-8 py-4 text-white font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.24)] border border-white/20"
           >
             <svg className="w-5 h-5 stroke-current transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" strokeWidth="2.5" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
             Visit
-          </Link>
+          </a>
         </div>
       </div>
     </div>
