@@ -9,12 +9,9 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const username = url.searchParams.get('username') || '@tokenmingle';
     
-    // Read files directly from the local disk and convert to Base64 (100% bulletproof)
+    // Read card directly from disk as Base64
     const cardPath = path.join(process.cwd(), 'public', 'card.png');
-    const heroPath = path.join(process.cwd(), 'public', 'hero.png');
-    
     const cardBase64 = `data:image/png;base64,${fs.readFileSync(cardPath).toString('base64')}`;
-    const heroBase64 = `data:image/png;base64,${fs.readFileSync(heroPath).toString('base64')}`;
 
     return new ImageResponse(
       (
@@ -25,23 +22,9 @@ export async function GET(request: Request) {
             height: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#050505',
-            position: 'relative',
+            backgroundColor: '#000000',
           }}
         >
-          {/* Hero background */}
-          <img 
-            src={heroBase64} 
-            alt="Hero Background" 
-            style={{ 
-              position: 'absolute', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover' 
-            }} 
-          />
 
           {/* Card container */}
           <div style={{ display: 'flex', position: 'relative' }}>
