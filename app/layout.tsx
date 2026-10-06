@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: "The future of token-powered communities is here.",
     images: [
       {
-        url: "/api/og?username=@tokenmingle", // default fallback
+        url: "/ogpreview.png",
         width: 1200,
         height: 630,
         alt: "TokenMingle Waitlist Card",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TokenMingle Waitlist",
     description: "The future of token-powered communities is here.",
-    images: ["/api/og?username=@tokenmingle"],
+    images: ["/ogpreview.png"],
   },
 };
 

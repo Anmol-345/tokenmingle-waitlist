@@ -28,10 +28,10 @@ export default function Home() {
       className="relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url(/hero.png)" }}
     >
-      <div className="absolute inset-0 backdrop-blur-md bg-black/20"></div>
+      <div className="absolute inset-0 bg-black/50"></div>
       
       <div className="relative z-10 flex flex-col items-center justify-center mb-16 gap-1">
-        <div className="relative inline-block drop-shadow-xl hover:drop-shadow-[0_15px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
+        <div className="relative inline-block drop-shadow-xl hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:scale-[1.02] hover:rotate-1 transition-all duration-300 cursor-pointer">
           <Image
             src="/card.png"
             alt="TokenMingle card"
