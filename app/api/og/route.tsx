@@ -7,13 +7,9 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const username = url.searchParams.get('username') || '@tokenmingle';
     
-    // Fetch directly from GitHub to bypass Vercel Edge loopback blocking which causes timeouts
+    // Pass the absolute GitHub URLs directly into the src string. Satori will fetch them automatically.
     const cardUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/card.png';
     const heroUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/hero.png';
-
-    // Fetch as array buffers for Satori
-    const cardBuffer = await fetch(cardUrl).then((res) => res.arrayBuffer());
-    const heroBuffer = await fetch(heroUrl).then((res) => res.arrayBuffer());
 
     return new ImageResponse(
       (
@@ -28,9 +24,9 @@ export async function GET(request: Request) {
             position: 'relative',
           }}
         >
-          {/* Hero background (Satori doesn't support background-image) */}
+          {/* Hero background */}
           <img 
-            src={heroBuffer as any} 
+            src={heroUrl} 
             alt="Hero Background" 
             style={{ 
               position: 'absolute', 
@@ -44,7 +40,7 @@ export async function GET(request: Request) {
 
           {/* Card container */}
           <div style={{ display: 'flex', position: 'relative' }}>
-            <img src={cardBuffer as any} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
+            <img src={cardUrl} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
             
             {/* The Custom Overlay */}
             <div
