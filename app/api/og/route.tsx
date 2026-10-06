@@ -70,8 +70,8 @@ export async function GET(request: Request) {
           <div
             style={{
               position: 'absolute',
-              top: '207px',
-              left: '124px',
+              top: '205px',
+              left: '122px',
               display: 'flex',
               justifyContent: 'flex-start',
               fontSize: 74,
