@@ -79,7 +79,7 @@ export async function GET(request: Request) {
               whiteSpace: 'nowrap',
             }}
           >
-            {displayUsername}
+            {username}
           </div>
         </div>
       ),
