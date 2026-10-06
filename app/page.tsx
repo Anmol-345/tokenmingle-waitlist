@@ -28,8 +28,6 @@ export default function Home() {
       className="relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url(/hero.png)" }}
     >
-      {/* Background Blur Overlay */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-black/10" />
       
       <div className="relative z-10 flex flex-col items-center justify-center mb-16 gap-1">
         <div className="relative inline-block drop-shadow-xl hover:drop-shadow-[0_15px_20px_rgba(0,0,0,0.4)] transition-all duration-300">
@@ -38,22 +36,18 @@ export default function Home() {
             alt="TokenMingle card"
             width={720}
             height={720}
-            className="h-auto w-[90vw] max-w-[720px] object-contain"
+            className="w-[90vw] max-w-[720px] object-contain"
+            style={{ height: "auto" }}
             priority
           />
           <div
             className={`absolute transition-all duration-500 ${
               linked ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
-            } flex flex-col items-center gap-[10px]`}
-            style={{ top: "50%", right: "6.5%", transform: "translate(0%, -60%)" }}
+            } flex items-center justify-start`}
+            style={{ top: "calc(45% + 7px)", left: "calc(11.2% - 10px)", transform: "translateY(-50%)" }}
           >
-            <div className="w-[110.6px] h-[110.6px] rounded-full bg-black border-[3px] border-white/40 shadow-xl flex items-center justify-center overflow-hidden">
-              <svg className="w-[56.9px] h-[56.9px] text-white/60" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-              </svg>
-            </div>
-            <span className="text-white text-[11.3px] font-semibold tracking-wide drop-shadow-md whitespace-nowrap">
-              {mockUser.name}
+            <span className="text-black font-montserrat font-extrabold whitespace-nowrap tracking-tight" style={{ fontSize: "clamp(16px, 5.5vw, 42px)" }}>
+              {mockUser.name.replace('@', '')}
             </span>
           </div>
         </div>
