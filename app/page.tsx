@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div
       className="relative flex min-h-screen w-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url(/card-bg.png)" }}
+      style={{ backgroundImage: "url(/hero.png)" }}
     >
       {/* Background Blur Overlay */}
       <div className="absolute inset-0 backdrop-blur-sm bg-black/10" />
