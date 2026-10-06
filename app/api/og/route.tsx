@@ -30,7 +30,7 @@ export async function GET(request: Request) {
             src={bgUrl}
             style={{
               position: 'absolute',
-              top: '0px',
+              top: '-45px',
               left: '0px',
               width: '1200px',
               height: '630px',
@@ -46,12 +46,13 @@ export async function GET(request: Request) {
                Circle width: 110.6 * 1.666 = 184px.
                Left: 1200 - 78 - 184 = 938px.
                Container top shift (-60% of total height 224px) = -134px.
-               Top: 315 - 134 = 181px.
+               Original Top: 315 - 134 = 181px.
+               Shifted up by 45px -> 136px
           */}
           <div
             style={{
               position: 'absolute',
-              top: '181px',
+              top: '136px',
               left: '938px',
               width: '184px',
               height: '184px',
@@ -68,11 +69,11 @@ export async function GET(request: Request) {
             </svg>
           </div>
 
-          {/* Username below circle: top = 181 + 184 + 17 = 382px */}
+          {/* Username below circle: top = 181 + 184 + 17 = 382px (shifted up by 45px -> 337px) */}
           <div
             style={{
               position: 'absolute',
-              top: '382px',
+              top: '337px',
               left: '938px',
               width: '184px',
               display: 'flex',
