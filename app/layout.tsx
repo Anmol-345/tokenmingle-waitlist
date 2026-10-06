@@ -29,12 +29,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
+    url: "https://tokenmingle-waitlist.vercel.app",
+    siteName: "TokenMingle",
+    type: "website",
     images: [
       {
-        url: "/ogpreview.png",
+        url: "https://tokenmingle-waitlist.vercel.app/ogpreview.png",
         width: 1200,
         height: 630,
         alt: "Waitlist for TokenMingle Card",
+        type: "image/png",
       },
     ],
   },
@@ -42,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
-    images: ["/ogpreview.png"],
+    images: ["https://tokenmingle-waitlist.vercel.app/ogpreview.png"],
   },
 };
 
