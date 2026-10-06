@@ -12,6 +12,11 @@ export async function GET(request: Request) {
     const bgBase64 = readFileSync(bgPath).toString('base64');
     const bgUrl = `data:image/png;base64,${bgBase64}`;
 
+    // Read the outer card-bg.png background
+    const outerBgPath = join(process.cwd(), 'public', 'card-bg.png');
+    const outerBgBase64 = readFileSync(outerBgPath).toString('base64');
+    const outerBgUrl = `data:image/png;base64,${outerBgBase64}`;
+
     return new ImageResponse(
       (
         <div
@@ -25,7 +30,20 @@ export async function GET(request: Request) {
             backgroundColor: '#000',
           }}
         >
-          {/* Card background */}
+          {/* Outer gradient background */}
+          <img
+            src={outerBgUrl}
+            style={{
+              position: 'absolute',
+              top: '0px',
+              left: '0px',
+              width: '1200px',
+              height: '630px',
+              objectFit: 'cover',
+            }}
+          />
+
+          {/* Card ticket image */}
           <img
             src={bgUrl}
             style={{
