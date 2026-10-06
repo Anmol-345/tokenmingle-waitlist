@@ -1,15 +1,20 @@
 import { ImageResponse } from 'next/og';
+import fs from 'fs';
+import path from 'path';
 
-export const runtime = 'edge';
+// Node.js runtime (remove 'edge' to ensure fs access and avoid edge network timeouts)
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const username = url.searchParams.get('username') || '@tokenmingle';
     
-    // Pass the absolute GitHub URLs directly into the src string. Satori will fetch them automatically.
-    const cardUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/card.png';
-    const heroUrl = 'https://raw.githubusercontent.com/Anmol-345/tokenmingle-waitlist/main/public/hero.png';
+    // Read files directly from the local disk and convert to Base64 (100% bulletproof)
+    const cardPath = path.join(process.cwd(), 'public', 'card.png');
+    const heroPath = path.join(process.cwd(), 'public', 'hero.png');
+    
+    const cardBase64 = `data:image/png;base64,${fs.readFileSync(cardPath).toString('base64')}`;
+    const heroBase64 = `data:image/png;base64,${fs.readFileSync(heroPath).toString('base64')}`;
 
     return new ImageResponse(
       (
@@ -26,7 +31,7 @@ export async function GET(request: Request) {
         >
           {/* Hero background */}
           <img 
-            src={heroUrl} 
+            src={heroBase64} 
             alt="Hero Background" 
             style={{ 
               position: 'absolute', 
@@ -40,7 +45,7 @@ export async function GET(request: Request) {
 
           {/* Card container */}
           <div style={{ display: 'flex', position: 'relative' }}>
-            <img src={cardUrl} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
+            <img src={cardBase64} alt="TokenMingle Card" width={630} height={630} style={{ objectFit: 'contain' }} />
             
             {/* The Custom Overlay */}
             <div
