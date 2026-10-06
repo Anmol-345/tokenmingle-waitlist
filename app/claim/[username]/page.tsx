@@ -1,54 +1,57 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 
-interface Props {
+type Props = {
   params: Promise<{ username: string }>;
-  searchParams: Promise<{ t?: string }>;
-}
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { username } = await params;
-  const { t } = await searchParams;
-  const decodedUsername = decodeURIComponent(username);
+  const sp = await searchParams;
+  const timestamp = sp?.t || Date.now().toString();
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tokenmingle-waitlist.vercel.app';
 
-  // Trick: &ext=.png makes Twitter treat this as a real image file
-  const ogImageUrl = `${baseUrl}/api/og?username=${encodeURIComponent(decodedUsername)}&v=${t || Date.now()}&ext=.png`;
+  // &ext=.png tricks Twitter into treating this as a real image file URL
+  const ogImageUrl = `${baseUrl}/api/og?username=${username}&v=${timestamp}&ext=.png`;
 
   return {
-    title: `${decodedUsername} just joined the TokenMingle Waitlist!`,
+    title: `${decodeURIComponent(username)} just joined the TokenMingle Waitlist!`,
     description: 'The future of token-powered communities is here. Join the waitlist now!',
     openGraph: {
-      title: `${decodedUsername} just joined the TokenMingle Waitlist!`,
+      title: `${decodeURIComponent(username)} just joined the TokenMingle Waitlist!`,
       description: 'The future of token-powered communities is here.',
+      url: `${baseUrl}/claim/${username}`,
       images: [
         {
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: `${decodedUsername}'s TokenMingle Waitlist Card`,
+          alt: `TokenMingle Waitlist Card for ${decodeURIComponent(username)}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${decodedUsername} just joined the TokenMingle Waitlist!`,
+      title: `${decodeURIComponent(username)} just joined the TokenMingle Waitlist!`,
       description: 'The future of token-powered communities is here.',
       images: [ogImageUrl],
     },
   };
 }
 
-// Twitterbot does NOT run JS -- it reads metadata above and stops.
-// Real users run the script and get instantly redirected home.
-export default async function ClaimPage() {
+// Twitter bots read the metadata above and stop — they don't run JS.
+// Real users hit this script and get instantly redirected to the homepage.
+export default function ClaimPage() {
   return (
     <>
       <script
-        dangerouslySetInnerHTML={{ __html: `window.location.replace('/');` }}
+        dangerouslySetInnerHTML={{
+          __html: `window.location.replace('/');`,
+        }}
       />
-      <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif' }}>
-        Redirecting...
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#050505', color: '#fff', fontFamily: 'sans-serif' }}>
+        <p>Redirecting to TokenMingle...</p>
       </div>
     </>
   );
