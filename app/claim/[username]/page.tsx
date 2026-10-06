@@ -13,7 +13,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tokenmingle-waitlist.vercel.app';
 
   // &ext=.png tricks Twitter into treating this as a real image file URL
-  const ogImageUrl = `${baseUrl}/api/og?username=${username}&v=${timestamp}&ext=.png`;
+  // Encode username so @ becomes %40 and doesn't confuse X's image fetcher
+  const ogImageUrl = `${baseUrl}/api/og?username=${encodeURIComponent(username)}&v=${timestamp}&ext=.png`;
 
   return {
     title: `${decodeURIComponent(username)} just joined the TokenMingle Waitlist!`,
