@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 const mockUser = {
   name: "@tokenmingle",
@@ -11,11 +11,11 @@ const mockUser = {
 };
 
 export default function Home() {
-  const [linked, setLinked] = useState(false);
+  const { data: session, status } = useSession();
 
   const handleShare = () => {
     const baseUrl = "https://tokenmingle-waitlist.vercel.app";
-    const username = mockUser.name;
+    const username = (session?.user as any)?.username || mockUser.name;
     // Trick: Point tweet URL to /claim/[username] with timestamp cache buster
     // so Twitterbot always scrapes fresh OG metadata
     const claimUrl = encodeURIComponent(`${baseUrl}/claim/${encodeURIComponent(username)}?t=${Date.now()}`);
@@ -42,26 +42,27 @@ export default function Home() {
           />
           <div
             className={`absolute transition-all duration-500 ${
-              linked ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+              session ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
             } flex items-center justify-start`}
             style={{ top: "calc(43% + 20px)", left: "calc(11.4% + 1.5px)", transform: "translateY(-50%)" }}
           >
             <span className="text-black font-montserrat font-extrabold whitespace-nowrap tracking-tight" style={{ fontSize: "clamp(16px, 5.5vw, 42px)" }}>
-              {mockUser.name.replace('@', '')}
+              {((session?.user as any)?.username || mockUser.name).replace('@', '')}
             </span>
           </div>
         </div>
 
         <div className="flex flex-row items-center justify-center gap-4">
-          {!linked ? (
+          {!session ? (
             <button
-              onClick={() => setLinked(true)}
-              className="group flex items-center gap-3 rounded-full bg-black/70 backdrop-blur-md px-8 py-4 text-white font-semibold transition-all duration-300 hover:bg-black hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.24)] border border-white/20"
+              onClick={() => signIn("twitter")}
+              disabled={status === "loading"}
+              className={`group flex items-center gap-3 rounded-full bg-black/70 backdrop-blur-md px-8 py-4 text-white font-semibold transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 ${status === "loading" ? "opacity-75 cursor-not-allowed" : "hover:bg-black hover:scale-105 active:scale-95 hover:shadow-[0_8px_30px_rgb(0,0,0,0.24)]"}`}
             >
               <svg className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
-              Link X
+              {status === "loading" ? "Loading..." : "Link X"}
             </button>
           ) : (
             <button
