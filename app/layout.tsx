@@ -24,23 +24,23 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || 
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   ),
-  title: "TokenMingle",
+  title: "Waitlist for TokenMingle",
   description: "The future of token-powered communities is here.",
   openGraph: {
-    title: "TokenMingle Waitlist",
+    title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
     images: [
       {
         url: "/ogpreview.png",
         width: 1200,
         height: 630,
-        alt: "TokenMingle Waitlist Card",
+        alt: "Waitlist for TokenMingle Card",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TokenMingle Waitlist",
+    title: "Waitlist for TokenMingle",
     description: "The future of token-powered communities is here.",
     images: ["/ogpreview.png"],
   },
