@@ -38,14 +38,21 @@ export async function GET(request: Request) {
             }}
           />
 
-          {/* Black avatar circle overlay */}
+          {/* Black avatar circle overlay
+               Card is 720x720 original, rendered at 630x630 (objectFit:contain) centered in 1200x630
+               Card left offset = (1200-630)/2 = 285px  |  scale = 0.875
+               In page.tsx: top:50%, right:6.5%, transform:translate(0%,-60%), size:110.6px
+               → size: 110.6*0.875 ≈ 97px
+               → top: 315 - 0.6*97 = 257px
+               → left: 285 + 630 - 6.5%*630 - 97 = 777px
+          */}
           <div
             style={{
               position: 'absolute',
-              top: '227px',
-              right: '80px',
-              width: '130px',
-              height: '130px',
+              top: '257px',
+              left: '777px',
+              width: '97px',
+              height: '97px',
               borderRadius: '50%',
               backgroundColor: '#000',
               border: '3px solid rgba(255,255,255,0.4)',
@@ -54,22 +61,22 @@ export async function GET(request: Request) {
               justifyContent: 'center',
             }}
           >
-            <svg width="65" height="65" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="rgba(255,255,255,0.6)">
               <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
             </svg>
           </div>
 
-          {/* Username below circle */}
+          {/* Username below circle: top = 257 + 97 + 9 = 363px, centered on circle (left 777, width 97) */}
           <div
             style={{
               position: 'absolute',
-              top: '370px',
-              right: '80px',
-              width: '130px',
+              top: '363px',
+              left: '777px',
+              width: '97px',
               display: 'flex',
               justifyContent: 'center',
-              fontSize: 14,
-              fontWeight: 700,
+              fontSize: 10,
+              fontWeight: 600,
               color: '#ffffff',
               letterSpacing: '0.05em',
               fontFamily: 'sans-serif',
