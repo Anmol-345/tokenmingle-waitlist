@@ -44,7 +44,7 @@ export default function Home() {
             className={`absolute transition-all duration-500 ${
               linked ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
             } flex items-center justify-start`}
-            style={{ top: "calc(45% + 5px)", left: "calc(11.2% - 12px)", transform: "translateY(-50%)" }}
+            style={{ top: "calc(43% + 20px)", left: "calc(11.4% + 1.5px)", transform: "translateY(-50%)" }}
           >
             <span className="text-black font-montserrat font-extrabold whitespace-nowrap tracking-tight" style={{ fontSize: "clamp(16px, 5.5vw, 42px)" }}>
               {mockUser.name.replace('@', '')}

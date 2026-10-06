@@ -51,38 +51,46 @@ export async function GET(request: Request) {
             }}
           />
 
-          {/* Card ticket image */}
-          <img
-            src={bgUrl}
-            style={{
-              position: 'absolute',
-              top: '-45px',
-              left: '0px',
-              width: '1200px',
-              height: '630px',
-              objectFit: 'contain',
-            }}
-          />
-
-          {/* Avatar circle removed by user request, keeping only text */}
-
-          {/* Username on the new card: left-aligned above 'is getting mingle' */}
+          {/* Inner container to center the card and lock text to it */}
           <div
             style={{
-              position: 'absolute',
-              top: '205px',
-              left: '122px',
               display: 'flex',
-              justifyContent: 'flex-start',
-              fontSize: 74,
-              fontWeight: 800,
-              color: '#000000',
-              fontFamily: '"Montserrat"',
-              letterSpacing: '-0.02em',
-              whiteSpace: 'nowrap',
+              position: 'relative',
+              width: '1000px',
+              height: '541px',
             }}
           >
-            {username}
+            {/* Card ticket image */}
+            <img
+              src={bgUrl}
+              style={{
+                position: 'absolute',
+                top: '0px',
+                left: '0px',
+                width: '1000px',
+                height: '541px',
+                objectFit: 'contain',
+              }}
+            />
+
+            {/* Username on the new card: left-aligned above 'is getting mingle' */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '252px',
+                left: '115.5px',
+                display: 'flex',
+                justifyContent: 'flex-start',
+                fontSize: 64,
+                fontWeight: 800,
+                color: '#000000',
+                fontFamily: '"Montserrat"',
+                letterSpacing: '-0.02em',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {username}
+            </div>
           </div>
         </div>
       ),
