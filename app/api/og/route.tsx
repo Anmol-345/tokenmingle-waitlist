@@ -2,6 +2,9 @@ import { ImageResponse } from 'next/og';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -13,8 +16,8 @@ export async function GET(request: Request) {
     const bgBase64 = readFileSync(bgPath).toString('base64');
     const bgUrl = `data:image/png;base64,${bgBase64}`;
 
-    // Read the outer hero.png background
-    const outerBgPath = join(process.cwd(), 'public', 'hero.png');
+    // Read the outer card-bg.png background
+    const outerBgPath = join(process.cwd(), 'public', 'card-bg.png');
     const outerBgBase64 = readFileSync(outerBgPath).toString('base64');
     const outerBgUrl = `data:image/png;base64,${outerBgBase64}`;
 
