@@ -132,6 +132,18 @@ export default function Home() {
             </svg>
             Visit
           </a>
+
+          <a
+            href="https://t.me/tokenmngle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 rounded-full bg-white/10 backdrop-blur-md px-8 py-4 text-white font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.24)] border border-white/20"
+          >
+            <svg className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.285-.346-.096l-6.405 4.032-2.76-.863c-.6-.185-.613-.6.125-.89l10.736-4.133c.5-.184.945.106.83.99z"/>
+            </svg>
+            Telegram
+          </a>
         </div>
       </div>
     </div>
