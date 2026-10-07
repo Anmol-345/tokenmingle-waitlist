@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useSession, signIn } from "next-auth/react";
 
 const mockUser = {
-  name: "@tokenmingle",
+  name: "@tokenmngle",
   avatar: null as string | null,
-  shareText: "Just joined the @TokenMingle waitlist! The future of token-powered communities is here.",
+  shareText: "Just joined the @tokenmngle waitlist! The future of token-powered communities is here.",
 };
 
 export default function Home() {
